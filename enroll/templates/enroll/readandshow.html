@@ -21,7 +21,6 @@
 
     <div class="layout">
         <div class="card" id="formCard">
-            <div class="card-title"><span></span> <span id="formtle"></span></div>
             <div class="form-group">
                 <label for="fname">Full name</label>
                 <input type="text" id="fname" placeholder="e.g. Arjun Sharma" autocomplete="off" />
@@ -41,27 +40,6 @@
         </div>
 
         <div class="card">
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-label">Total contacts</div>
-                    <div class="stat-value" id="totalCount">0</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-label">Avg age</div>
-                    <div class="stat-value" id="avgAge">—</div>
-                </div>
-            </div>
-            <div class="search-bar">
-                <div class="search-wrap" style="flex:1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="M21 21l-4.35-4.35" />
-                    </svg>
-                    <input type="text" id="searchInput" placeholder="Search by name or phone…"
-                        oninput="renderTable()" />
-                </div>
-                <span class="badge" id="countBadge">0 records</span>
-            </div>
             <div style="overflow-x:auto;">
                 <table>
                     <thead>
@@ -73,7 +51,46 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody"></tbody>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Arjun Sharma</td>
+                            <td>28</td>
+                            <td>+91 98765 43210</td>
+                            <td>
+                                <div class="actions">
+                                    <button class="act-btn act-edit">Edit</button>
+                                    <button class="act-btn act-del">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Priya Verma</td>
+                            <td>34</td>
+                            <td>+91 91234 56789</td>
+                            <td>
+                                <div class="actions">
+                                    <button class="act-btn act-edit">Edit</button>
+                                    <button class="act-btn act-del">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Rahul Gupta</td>
+                            <td>22</td>
+                            <td>+91 87654 32109</td>
+                            <td>
+                                <div class="actions">
+                                    <button class="act-btn act-edit">Edit</button>
+                                    <button class="act-btn act-del">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    </tbody>
                 </table>
             </div>
         </div>

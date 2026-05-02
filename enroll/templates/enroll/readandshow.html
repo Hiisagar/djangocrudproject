@@ -1,0 +1,87 @@
+{% extends 'enroll/base.html' %}
+
+
+{% block body %}
+
+<div class="page">
+    <div class="header">
+        <div class="header-icon">
+            <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+        </div>
+        <div>
+            <h1>Contact Manager</h1>
+            <p>Add, edit and manage your contacts</p>
+        </div>
+    </div>
+
+    <div class="layout">
+        <div class="card" id="formCard">
+            <div class="card-title"><span></span> <span id="formTitle">Add new contact</span></div>
+            <div class="form-group">
+                <label for="fname">Full name</label>
+                <input type="text" id="fname" placeholder="e.g. Arjun Sharma" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label for="fage">Age</label>
+                <input type="number" id="fage" placeholder="e.g. 28" min="1" max="120" />
+            </div>
+            <div class="form-group">
+                <label for="fphone">Phone number</label>
+                <input type="tel" id="fphone" placeholder="e.g. +91 98765 43210" />
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="submitForm()" id="submitBtn">Add contact</button>
+                <button class="btn btn-reset" onclick="resetForm()">Clear</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><span></span> Contact records</div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-label">Total contacts</div>
+                    <div class="stat-value" id="totalCount">0</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Avg age</div>
+                    <div class="stat-value" id="avgAge">—</div>
+                </div>
+            </div>
+            <div class="search-bar">
+                <div class="search-wrap" style="flex:1">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35" />
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search by name or phone…"
+                        oninput="renderTable()" />
+                </div>
+                <span class="badge" id="countBadge">0 records</span>
+            </div>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+
+{% endblock body %}

@@ -20,24 +20,28 @@
     </div>
 
     <div class="layout">
-        <div class="card" id="formCard">
-            <div class="form-group">
-                <label for="fname">Full name</label>
-                <input type="text" id="fname" placeholder="e.g. Arjun Sharma" autocomplete="off" />
+        <form action="/" method="post">
+            {% csrf_token %}
+            <div class="card" id="formCard">
+                <div class="form-group">
+                    <label for="fname">Full name</label>
+                    <input type="text" name="name" id="fname" placeholder="e.g. Arjun Sharma" autocomplete="off"
+                        required />
+                </div>
+                <div class="form-group">
+                    <label for="fage">Age</label>
+                    <input type="number" id="fage" name="age" placeholder="e.g. 28" min="1" max="120" required />
+                </div>
+                <div class="form-group">
+                    <label for="fphone">Phone number</label>
+                    <input type="tel" id="fphone" name="phone" placeholder="e.g. +91 98765 43210" />
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" type="submit">Add contact</button>
+                    <button class="btn btn-reset" onclick="resetForm()">Clear</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="fage">Age</label>
-                <input type="number" id="fage" placeholder="e.g. 28" min="1" max="120" />
-            </div>
-            <div class="form-group">
-                <label for="fphone">Phone number</label>
-                <input type="tel" id="fphone" placeholder="e.g. +91 98765 43210" />
-            </div>
-            <div class="btn-row">
-                <button class="btn btn-primary" onclick="submitForm()" id="submitBtn">Add contact</button>
-                <button class="btn btn-reset" onclick="resetForm()">Clear</button>
-            </div>
-        </div>
+        </form>
 
         <div class="card">
             <div style="overflow-x:auto;">
@@ -52,11 +56,14 @@
                         </tr>
                     </thead>
                     <tbody>
+
+
+                        {% for student in data %}
                         <tr>
-                            <td>1</td>
-                            <td>Arjun Sharma</td>
-                            <td>28</td>
-                            <td>+91 98765 43210</td>
+                            <td>{{ student.std_id }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.age }}</td>
+                            <td>{{ student.phone }}</td>
                             <td>
                                 <div class="actions">
                                     <button class="act-btn act-edit">Edit</button>
@@ -64,30 +71,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Priya Verma</td>
-                            <td>34</td>
-                            <td>+91 91234 56789</td>
-                            <td>
-                                <div class="actions">
-                                    <button class="act-btn act-edit">Edit</button>
-                                    <button class="act-btn act-del">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Rahul Gupta</td>
-                            <td>22</td>
-                            <td>+91 87654 32109</td>
-                            <td>
-                                <div class="actions">
-                                    <button class="act-btn act-edit">Edit</button>
-                                    <button class="act-btn act-del">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
+                        {% endfor %}
+
                     </tbody>
 
                     </tbody>

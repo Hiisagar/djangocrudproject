@@ -1,2 +1,89 @@
 {% extends 'enroll/base.html' %}
 
+{% block title %}
+
+<title>CRUD - Insert Form</title>
+
+{% endblock title %}
+
+{% block body %}
+
+<div class="page">
+    <div class="header">
+        <div class="header-icon">
+            <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+        </div>
+        <div>
+            <h1>Contact Manager</h1>
+            <p>edit and manage your contacts</p>
+        </div>
+    </div>
+
+    <div class="layout">
+        <form action="{% url 'update' data.std_id %}" method="post">
+            {% csrf_token %}
+            <div class="card" id="formCard">
+                <div class="form-group">
+                    <label for="fname">Full name</label>
+                    <input type="text" name="name" value="{{data.name}}" id="fname" placeholder="e.g. Arjun Sharma" autocomplete="off"
+                        required />
+                </div>
+                <div class="form-group">
+                    <label for="fage">Age</label>
+                    <input type="number" value="{{data.age}}" id="fage" name="age" placeholder="e.g. 28" min="1" max="120" required />
+                </div>
+                <div class="form-group">
+                    <label for="fphone">Phone number</label>
+                    <input type="tel" value="{{data.phone}}" id="fphone" name="phone" placeholder="e.g. +91 98765 43210" />
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" type="submit">Update contact</button>
+                    <button class="btn btn-reset" onclick="resetForm()">Clear</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="card">
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr>
+                            <td>{{forloop.counter }}</td>
+                            <td>{{ data.name }}</td>
+                            <td>{{ data.age }}</td>
+                            <td>{{ data.phone }}</td>
+                            <td>
+                                <div class="actions">
+                                    <a href="{% url 'update' data.std_id %}" class="act-btn act-del">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+{% endblock body %}
